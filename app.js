@@ -18,6 +18,14 @@ app.get('/search', function (req, res) {
   res.render('search', { tab: 'search' })
 });
 
+app.get('/florist', function (req, res) {
+    res.render('otherbiz')
+});
+
+app.get('/evaluation', function (req, res) {
+    res.render('chat')
+});
+
 // Sign In With Intuit, Connect To QuickBooks, or Get App Now
 // These calls will redirect to Intuit's authorization flow
 app.use('/sign_in_with_intuit', require('./routes/sign_in_with_intuit.js'))
@@ -31,9 +39,10 @@ app.use('/callback', require('./routes/callback.js'))
 app.use('/connected', require('./routes/connected.js'))
 
 // Call an example API over OAuth2
-app.use('/api_call', require('./routes/api_call.js'))
-
-
+app.use('/api_call', require('./routes/api_call.js'));
+app.use('/creditage', require('./routes/creditage.js'));
+app.use('/unpaidar', require('./routes/unpaidar.js'));
+app.use('/customers', require('./routes/customers.js'));
 // Start server on HTTP (will use ngrok for HTTPS forwarding)
 app.listen(3000, function () {
   console.log('Example app listening on port 3000!')

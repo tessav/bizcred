@@ -16,28 +16,15 @@
 
     setTimeout(function() {
         createScoreGauge();
-        getLatePayments();
-        getAge();
-        getUnpaidAR();
-    }, 1000);
+        apiCall();
+    }, 500);
 
-    function getLatePayments() {
+    function apiCall() {
+      $("#result").html('Loading...')
       $.get("/api_call", function(data) {
-        $("#latepayment").html(JSON.stringify(data, null, 2))
+        $("#result").html(JSON.stringify(data, null, 2))
       })
     }
-
-    function getAge() {
-        $.get("/creditage", function(data) {
-            $("#creditage").html(JSON.stringify(data, null, 2))
-        })
-    }
-    function getUnpaidAR() {
-        $.get("/unpaidar", function(data) {
-            $("#unpaidar").html(JSON.stringify(data, null, 2))
-        })
-    }
-
     function createScoreGauge() {
         var gaugeOptions = {
 
@@ -107,7 +94,7 @@
             },
             series: [{
                 name: 'Reputation',
-                data: [80],
+                data: [60],
                 dataLabels: {
                     format: '<div style="text-align:center"><span style="font-size:25px;color:black' + '">{y}</span><br/>' +
                     '<span style="font-size:12px;color:silver">Score</span></div>'
@@ -146,7 +133,7 @@
       <br>
       <div class="card">
         <div class="card-block">
-          <h3>Your Current Score</h3>
+          <h3>ABC Florist's Score</h3>
           <div id="score-gauge"></div>
         </div>
       </div>
@@ -159,8 +146,8 @@
             <div class="card sm-card">
               <div class="card-block">
                 <h4>Late Payments</h4>
-                <h3><b><span id="latepayment"></span> in the last 3 months</b></h3>
-                <p>In a good range, keep it up to become very good!</p>
+                <h3><b>Limited</b></h3>
+                <p>In a good range</p>
               </div>
             </div>
           </div>
@@ -168,8 +155,8 @@
             <div class="card sm-card">
               <div class="card-block">
                 <h4>Unpaid AR</h4>
-                <h3><b>$<span id="unpaidar"></span> existing</b></h3>
-                <p>In a very good range! Keep it 0 to become excellent.</p>
+                <h3><b>Extremely Limited</b></h3>
+                <p>In a very good range</p>
               </div>
             </div>
           </div>
@@ -177,8 +164,8 @@
             <div class="card sm-card">
               <div class="card-block">
                 <h4>Business Age</h4>
-                <h3><b><span id="creditage"></span> Years</b></h3>
-                <p>Maintain the good score for the long term.</p>
+                <h3><b>Established</b></h3>
+                <p>In a a very good range</p>
 
               </div>
             </div>
@@ -187,8 +174,8 @@
             <div class="card sm-card">
               <div class="card-block">
                 <h4>Derogatory Marks</h4>
-                <h3><b>None!</b></h3>
-                <p>In an excellent range, keep it up!</p>
+                <h3><b>None</b></h3>
+                <p>In an excellent range</p>
               </div>
             </div>
           </div>

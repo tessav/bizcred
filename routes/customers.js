@@ -13,7 +13,7 @@ router.get('/', function (req, res) {
   })
 
   // Set up API call (with OAuth2 accessToken)
-  var url = config.api_uri + req.session.realmId + '/query?query=SELECT%20%2A%20FROM%20BILL'
+  var url = config.api_uri + req.session.realmId + '/query?query=SELECT%20%2A%20FROM%20INVOICE'
   console.log('Making API call to: ' + url)
   var requestObj = {
     url: url,
@@ -30,17 +30,9 @@ router.get('/', function (req, res) {
       if(err || response.statusCode != 200) {
         return res.json({error: err, statusCode: response.statusCode})
       }
-      var numLate = 0;
-      var billList = JSON.parse(response.body)["QueryResponse"]["Bill"];
-      for (var i = 0; i< billList.length; i++) {
-        var dueDate = new Date(billList[i]['DueDate']);
-        var lastUpdatedTime = new Date(billList[i]['MetaData']['CreateTime'].substr(0,10));
-        if (dueDate < lastUpdatedTime) {
-          numLate += 1;
-        }
-      }
-      // API Call was a success!
-      res.json(numLate)
+      console.log(JSON.parse(response.body));
+      var customers = JSON.parse(response.body)["QueryResponse"]["Invoice"];
+      res.json(JSON.parse(response.body))
     }, function (err) {
       console.log(err)
       return res.json(err)

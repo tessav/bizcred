@@ -1,4 +1,17 @@
 <% include header.ejs %>
+<style>
+    a {
+        color: black;
+        text-decoration: none;
+    }
+
+    a:hover, a:visited, a:focus
+    {
+        color:black;
+        text-decoration:none;
+        cursor:pointer;
+    }
+</style>
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-3"></div>
@@ -7,7 +20,7 @@
             <br>
             <input type="text" id="search" placeholder="Search" size="78">
             <clr-icon shape="search" class="is-solid" size="25"></clr-icon>
-
+            <a href="/florist">
             <div class="card">
                 <div class="card-block">
                     <div class="container-fluid">
@@ -24,8 +37,39 @@
                     </div>
                 </div>
             </div>
-
-
+            </a>
+            <div class="card" style="cursor: pointer">
+                <div class="card-block">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-10">
+                                <h4>Cook's Restaurant</h4>
+                                <p>Details</p>
+                                <br>
+                            </div>
+                            <div class="col-md-2">
+                                <h1 style="color: deepskyblue;">60</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card" style="cursor: pointer">
+                <div class="card-block">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-10">
+                                <h4>Ice Creamery</h4>
+                                <p>Details</p>
+                                <br>
+                            </div>
+                            <div class="col-md-2">
+                                <h1 style="color: deepskyblue;">90</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="col-md-3"></div>
     </div>

@@ -1,0 +1,39 @@
+<% include header.ejs %>
+
+<script>
+    setTimeout(getCustomers, 1000);
+    function getCustomers() {
+        $.get("/customers", function(data) {
+            var invoices = data["QueryResponse"]["Invoice"];
+            for (var i=0; i<invoices.length;i++) {
+                var address = (invoices[i]["BillEmail"]) ? invoices[i]["BillEmail"]["Address"] : '';
+                $("#customers").append("<tr><td>" + invoices[i]["CustomerRef"]["name"] +
+                    "</td><td>" + invoices[i]["DueDate"] + "</td><td>"
+                    + invoices[i]["TotalAmt"] + "</td><td><a class='btn btn-sm btn-primary' href='mailto:" +
+                    address + "'>Email</a></td></tr>");
+            }
+        })
+    }
+</script>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8"><br>
+            <h2>Track Account Receivables</h2>
+            <br>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Customer</th>
+                    <th>Due Date</th>
+                    <th>Total Amount</th>
+                    <th>Remind</th>
+                </tr>
+                </thead>
+                <tbody id="customers">
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<% include footer.ejs %>
