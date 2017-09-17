@@ -1,0 +1,17 @@
+a:visited {
+  color: #0000ee;
+}
+
+.imgLink {
+  text-decoration: none;
+  display: inline-block;
+  margin: 10px;
+}
+
+#result {
+  white-space: pre-wrap;
+}
+
+body {
+  background-color: #ececec;
+}
