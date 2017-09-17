@@ -1,7 +1,7 @@
 <% include header.ejs %>
 
 <script>
-    setTimeout(getCustomers, 1000);
+    setTimeout(getCustomers, 100);
     function getCustomers() {
         $.get("/customers", function(data) {
             var invoices = data["QueryResponse"]["Invoice"];
