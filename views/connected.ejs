@@ -15,28 +15,49 @@
     }
 
     setTimeout(function() {
-        createScoreGauge();
-        getLatePayments();
-        getAge();
-        getUnpaidAR();
-    }, 1000);
+            createScoreGauge();
+            var one = getLatePayments();
+            var two = getAge();
+            var three = getUnpaidAR();
+            setTimeout(function() {
+              getCreditScore(5, 30, 200, 10, 1);
+            }, 1000);
+        }, 1000);
 
-    function getLatePayments() {
-      $.get("/api_call", function(data) {
-        $("#latepayment").html(JSON.stringify(data, null, 2))
-      })
-    }
+        function getLatePayments() {
+          var one;
+          $.get("/api_call", function(data) {
+            one = data;
+            $("#latepayment").html(JSON.stringify(data, null, 2))
+            return one;
 
-    function getAge() {
-        $.get("/creditage", function(data) {
-            $("#creditage").html(JSON.stringify(data, null, 2))
-        })
-    }
-    function getUnpaidAR() {
-        $.get("/unpaidar", function(data) {
-            $("#unpaidar").html(JSON.stringify(data, null, 2))
-        })
-    }
+          })
+        }
+
+        function getAge() {
+          var two;
+            $.get("/creditage", function(data) {
+              two = data;
+              $("#creditage").html(JSON.stringify(data, null, 2))
+              return two;
+            })
+        }
+        function getUnpaidAR() {
+          var three;
+            $.get("/unpaidar", function(data) {
+              three = data;
+                $("#unpaidar").html(JSON.stringify(data, null, 2))
+                return three;
+            })
+        }
+
+        function getCreditScore(one, two, three, four, five) {
+          $.get("http://localhost:8000/machine?one=" + one + "&two=" + two + "&three=" + three + "&four=" + four + "&five=" + five , function(data) {
+            console.log(data)
+              $("#creditscore").html(JSON.stringify(data, null, 2))
+              $("#predicteddelay").html(data[0].toFixed(1) /1);
+          })
+        }
 
     function createScoreGauge() {
         var gaugeOptions = {
@@ -148,6 +169,7 @@
         <div class="card-block">
           <h3>Your Current Score</h3>
           <div id="score-gauge"></div>
+          <h5>Predicted Payment Delay: <span id='predicteddelay'></span> days</h5><br>
         </div>
       </div>
     </div>
